@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/cats/cat-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Our Pokemon</h1>
+  <img
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png"
+    alt="pichu"
+  />
+  <img
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png"
+    alt="cleffa"
+  />
+  <img
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png"
+    alt="igglybuff"
+  />
+  <img
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/175.png"
+    alt="togepi"
+  />
+</section>
+
+<section class="card-container">
+  {% for pokemon in pokemons %}
+  <div class="card">
+    <div class="card-content">
+      <div class="card-img-container">
+        <img
+          src={{ pokemon.img }}
+          alt={{ pokemon.name }}
+        />
+      </div>
+      <h2 class="card-title">{{ pokemon.name }}</h2>
+      <p>A level {{ pokemon.level }} {{ pokemon.types }} type</p>
+      <p><small>{{ pokemon.description }}</small></p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
