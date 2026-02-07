@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("<h1>Hello World!</h1>")
+    return render(request, "home.html")
 
 
 def about(request):
@@ -28,20 +27,21 @@ pokemons = [
         5,
     ),
     Pokemon(
-       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png",
-       "Cleffa",
-       'Fairy',
-       'Star Shape Pokemon',
-       2,
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png",
+        "Cleffa",
+        "Fairy",
+        "Star Shape Pokemon",
+        2,
     ),
     Pokemon(
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png",
-        'Igglybuff',
-        'Normal, Fairy',
-        'Balloon Pokemon',
+        "Igglybuff",
+        "Normal, Fairy",
+        "Balloon Pokemon",
         3,
     ),
 ]
 
+
 def pokemon_index(request):
-    return render(request, 'pokemon/index.html', {'pokemons': pokemons})
+    return render(request, "pokemon/index.html", {"pokemons": pokemons})
