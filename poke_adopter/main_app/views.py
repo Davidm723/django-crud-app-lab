@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Pokemon
 
 
 def home(request):
@@ -9,39 +10,11 @@ def about(request):
     return render(request, "about.html")
 
 
-class Pokemon:
-    def __init__(self, img, name, types, description, level):
-        self.img = img
-        self.name = name
-        self.types = types
-        self.description = description
-        self.level = level
-
-
-pokemons = [
-    Pokemon(
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-        "Pikachu",
-        "Electric",
-        "Mouse Pokemon",
-        5,
-    ),
-    Pokemon(
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png",
-        "Cleffa",
-        "Fairy",
-        "Star Shape Pokemon",
-        2,
-    ),
-    Pokemon(
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png",
-        "Igglybuff",
-        "Normal, Fairy",
-        "Balloon Pokemon",
-        3,
-    ),
-]
-
-
 def pokemon_index(request):
-    return render(request, "pokemon/index.html", {"pokemons": pokemons})
+    pokemon = Pokemon.objects.all()
+    return render(request, "pokemon/index.html", {"pokemon": pokemon})
+
+
+def pokemon_detail(request, pokemon_id):
+    pokemon = Pokemon.objects.get(id=pokemon_id)
+    return render(request, "pokemon/detail.html", {"pokemon": pokemon})
