@@ -3,7 +3,13 @@
 {% endblock %} {% block content %}
 <section class="pokemon-container">
   <div class="pokemon-img">
-    <img src={{ pokemon.img }} alt={{ pokemon.name }} />
+    <img
+      src={{ pokemon.img }}
+      
+      alt={{ pokemon.name }}
+      
+      style="max-height: 250px"
+    />
   </div>
   <div class="pokemon-details">
     <h1>{{ pokemon.name }}</h1>
@@ -18,4 +24,49 @@
     </div>
   </div>
 </section>
+
+<div class="battles-toy-container">
+  <section class="battles">
+    <div class="subsection-title">
+      <h2>Battles</h2>
+      <img
+        src="https://toppng.com/uploads/preview/pokemon-11530983579xjgejrvwml.png"
+        alt="angry pikachu"
+      />
+    </div>
+    <form
+      action="{% url 'add-battle' pokemon.id %}"
+      method="post"
+      class="subsection-content"
+      autocomplete="off"
+    >
+      {% csrf_token %} {{ battle_form.as_p }}
+      <button type="submit" class="btn submit">Add Battle</button>
+    </form>
+    <h3>Past Battles</h3>
+    {% if pokemon.battle_set.all.count %}
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Trainer Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for battle in pokemon.battle_set.all %}
+        <tr>
+          <td>{{battle.date}}</td>
+          <td>{{battle.get_trainer_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="subsection-content">
+      <p>⚠️ {{pokemon.name}} has not battled yet!</p>
+    </div>
+    {% endif %}
+  </section>
+</div>
+
 {% endblock %}

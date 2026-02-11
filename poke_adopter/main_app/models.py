@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
 
+TRAINERS = (("T", "Trainer"), ("R", "Rival"), ("G", "Gym Leader"))
+
+
 # Create your models here.
 class Pokemon(models.Model):
     img = models.CharField()
@@ -11,6 +14,19 @@ class Pokemon(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
-        return reverse('pokemon-detail', kwargs={'pokemon_id': self.id})
+        return reverse("pokemon-detail", kwargs={"pokemon_id": self.id})
+
+
+class Battle(models.Model):
+    date = models.DateField("Battle Date")
+    trainer = models.CharField(max_length=1, choices=TRAINERS, default=TRAINERS[0][0])
+
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_trainer_display()} on {self.date}"
+
+    class Meta:
+        ordering = ["-date"]
