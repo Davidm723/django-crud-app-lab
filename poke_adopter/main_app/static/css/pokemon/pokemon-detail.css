@@ -25,7 +25,7 @@
   margin-top: 20px;
 }
 
-.battles-toy-container {
+.battles-item-container {
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
@@ -42,7 +42,7 @@
   margin: 0 8px;
 }
 
-.toy-container {
+.item-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -57,19 +57,19 @@
 
 .unfed,
 .fed,
-.no-toys,
-.all-toys {
+.no-items,
+.all-items {
   margin: 0;
   font-weight: bold;
 }
 
 .unfed,
-.no-toys {
+.no-items {
   color: var(--danger);
 }
 
 .fed,
-.all-toys {
+.all-items {
   color: var(--submit);
 }
 
@@ -95,7 +95,7 @@
   margin: 5px 0;
 }
 
-.battles-toy-container > section {
+.battles-item-container > section {
   width: 80%;
   min-width: 360px;
   border: var(--borders);
@@ -118,13 +118,13 @@
 }
 
 .battles h2,
-.toys h2 {
+.items h2 {
   font-size: 3.2rem;
   margin: 0;
 }
 
 .battles h3,
-.toys h3 {
+.items h3 {
   font-size: var(--font-xl);
   margin: 10px 0;
 }
@@ -163,16 +163,16 @@
   background-color: #f3f3fd;
 }
 
-.toy-container p {
+.item-container p {
   margin: 12px 0;
 }
 
-.toy-container a {
+.item-container a {
   text-decoration: none;
   color: #111;
 }
 
-.toy-container .btn {
+.item-container .btn {
   padding: 3px 10px;
   margin-left: 10px;
 }
@@ -203,19 +203,19 @@
     max-height: 200px;
   }
 
-  .battles-toy-container {
+  .battles-item-container {
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
   }
 
-  .battles-toy-container > section {
+  .battles-item-container > section {
     width: 45%;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .battles-toy-container {
+  .battles-item-container {
     padding: 0 40px;
   }
 }

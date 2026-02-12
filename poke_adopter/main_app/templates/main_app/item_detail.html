@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/items/item-detail.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="card-content">
+  <div class="card-image">
+    <img src="{{ item.img }}" alt="{{ item.name }}" />
+  </div>
+
+  <div class="card-details">
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.description }}</p>
+
+    <div class="card-buttons">
+      <a href="{% url 'item-update' item.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'item-delete' item.id %}" class="btn danger">Delete</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Pokemon
+from django.views.generic import ListView, DetailView
+from .models import Pokemon, Item
 from .forms import BattleForm
 
 
@@ -47,3 +48,26 @@ class PokemonUpdate(UpdateView):
 class PokemonDelete(DeleteView):
     model = Pokemon
     success_url = "/pokemon/"
+
+
+class ItemCreate(CreateView):
+    model = Item
+    fields = "__all__"
+
+
+class ItemList(ListView):
+    model = Item
+
+
+class ItemDetail(DetailView):
+    model = Item
+
+
+class ItemUpdate(UpdateView):
+    model = Item
+    fields = ["img", "description"]
+
+
+class ItemDelete(DeleteView):
+    model = Item
+    success_url = "/items/"

@@ -30,3 +30,15 @@ class Battle(models.Model):
 
     class Meta:
         ordering = ["-date"]
+
+
+class Item(models.Model):
+    img = models.CharField()
+    name = models.CharField(max_length=50)
+    description = models.TextField(max_length=250)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("item-detail", kwargs={"pk": self.id})

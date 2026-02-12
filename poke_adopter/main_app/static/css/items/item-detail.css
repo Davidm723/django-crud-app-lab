@@ -1,0 +1,47 @@
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  width: 80vw;
+  height: 50vh;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+.card-image img {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.card h2 {
+  margin: 0 0 8px 0;
+  font-size: var(--font-xxl);
+}
+
+.card p {
+  margin: 0;
+  font-size: var(--font-xxl);
+}
+
+.card-buttons {
+  margin-top: 12px;
+}
+
+.btn {
+  margin-right: 10px;
+}

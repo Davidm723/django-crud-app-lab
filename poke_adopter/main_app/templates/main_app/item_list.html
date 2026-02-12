@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/items/item-index.css' %}" />
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>All Items</h1>
+  <img src="https://archives.bulbagarden.net/media/upload/7/79/Dream_Pok%C3%A9_Ball_Sprite.png" alt="A pokeball" />
+  <img src="https://archives.bulbagarden.net/media/upload/d/df/Dream_Potion_Sprite.png" alt="A potion" />
+  <img src="https://archives.bulbagarden.net/media/upload/c/ce/Dream_HP_Up_Sprite.png" alt="An HP up" />
+  <img src="https://archives.bulbagarden.net/media/upload/0/0c/Dream_Oran_Berry_Sprite.png" alt="An oran berry" />
+</section>
+
+<section class="card-container">
+  {% for item in item_list %}
+  <div class="card">
+    <a href="{% url 'item-detail' item.id %}">
+      <div class="card-content">
+        <img src="{{ item.img }}" alt="{{ item.name }}" />
+        <h2>{{ item.name }}</h2>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
