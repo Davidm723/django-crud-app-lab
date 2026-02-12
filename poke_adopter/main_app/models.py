@@ -5,12 +5,25 @@ TRAINERS = (("T", "Trainer"), ("R", "Rival"), ("G", "Gym Leader"))
 
 
 # Create your models here.
+class Item(models.Model):
+    img = models.CharField()
+    name = models.CharField(max_length=50)
+    description = models.TextField(max_length=250)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("item-detail", kwargs={"pk": self.id})
+
+
 class Pokemon(models.Model):
     img = models.CharField()
     name = models.CharField(max_length=100)
     types = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     level = models.IntegerField()
+    items = models.ManyToManyField(Item)
 
     def __str__(self):
         return self.name
@@ -30,15 +43,3 @@ class Battle(models.Model):
 
     class Meta:
         ordering = ["-date"]
-
-
-class Item(models.Model):
-    img = models.CharField()
-    name = models.CharField(max_length=50)
-    description = models.TextField(max_length=250)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse("item-detail", kwargs={"pk": self.id})

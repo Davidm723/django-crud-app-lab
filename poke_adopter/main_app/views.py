@@ -20,9 +20,18 @@ def pokemon_index(request):
 
 def pokemon_detail(request, pokemon_id):
     pokemon = Pokemon.objects.get(id=pokemon_id)
+    items_pokemon_doesnt_have = Item.objects.exclude(
+        id__in=pokemon.items.all().values_list("id")
+    )
     battle_form = BattleForm()
     return render(
-        request, "pokemon/detail.html", {"pokemon": pokemon, "battle_form": battle_form}
+        request,
+        "pokemon/detail.html",
+        {
+            "pokemon": pokemon,
+            "battle_form": battle_form,
+            "items": items_pokemon_doesnt_have,
+        },
     )
 
 
@@ -35,9 +44,19 @@ def add_battle(request, pokemon_id):
     return redirect("pokemon-detail", pokemon_id=pokemon_id)
 
 
+def associate_item(request, pokemon_id, item_id):
+    Pokemon.objects.get(id=pokemon_id).items.add(item_id)
+    return redirect("pokemon-detail", pokemon_id=pokemon_id)
+
+
+def remove_item(request, pokemon_id, item_id):
+    Pokemon.objects.get(id=pokemon_id).items.remove(item_id)
+    return redirect("pokemon-detail", pokemon_id=pokemon_id)
+
+
 class PokemonCreate(CreateView):
     model = Pokemon
-    fields = "__all__"
+    fields = ["img", "name", "types", "description", "level"]
 
 
 class PokemonUpdate(UpdateView):
