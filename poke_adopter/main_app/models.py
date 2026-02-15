@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 TRAINERS = (("T", "Trainer"), ("R", "Rival"), ("G", "Gym Leader"))
 
@@ -24,6 +25,7 @@ class Pokemon(models.Model):
     description = models.TextField(max_length=250)
     level = models.IntegerField()
     items = models.ManyToManyField(Item)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
